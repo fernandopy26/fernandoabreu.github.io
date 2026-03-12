@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DK Autobrilho</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+
+<header class="hero">
+
+<h1>DK Autobrilho</h1>
+
+<p>Estética automotiva profissional</p>
+
+<a class="botao-principal" href="https://wa.me/5581983960860" target="_blank">
+Entrar em contato
+</a>
+
+</header>
+
+
+
+<section class="sobre">
+
+<h2>Quem Somos</h2>
+
+<p>
+A DK Autobrilho nasceu com o objetivo de entregar o melhor cuidado para o seu veículo.
+Utilizamos técnicas profissionais e produtos de alta qualidade para garantir brilho,
+proteção e valorização do seu carro.
+</p>
+
+</section>
+
+
+
+<section class="servicos">
+
+<h2>Nossos Serviços</h2>
+
+<div class="cards">
+
+
+<div class="card">
+
+<img src="imagens/simples.jpg">
+
+<h3>Lavação Simples</h3>
+
+<p>Hatch — R$35</p>
+<p>Sedan — R$45</p>
+<p>SUV — R$55</p>
+
+</div>
+
+
+<div class="card">
+
+<img src="imagens/tecnica.jpg">
+
+<h3>Lavação Técnica</h3>
+
+<p>Hatch — R$110</p>
+<p>Sedan — R$120</p>
+<p>SUV — R$155</p>
+
+</div>
+
+
+<div class="card">
+
+<img src="imagens/chassi.jpg">
+
+<h3>Lavação de Chassi</h3>
+
+<p>Hatch — R$90</p>
+<p>Sedan — R$100</p>
+<p>SUV — R$120</p>
+
+</div>
+
+
+<div class="card">
+
+<img src="imagens/motor.jpg">
+
+<h3>Lavação de Motor</h3>
+
+<p>Hatch — R$90</p>
+<p>Sedan — R$100</p>
+<p>SUV — R$135</p>
+
+</div>
+
+
+<div class="card">
+
+<img src="imagens/outros.jpg">
+
+<h3>Outros Serviços</h3>
+
+<p>Lavação Uber — R$30</p>
+<p>Lavação Moto Uber — R$20</p>
+<p>Descontaminação de Vidros — R$30</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<section class="galeria">
+
+<h2>Galeria de Trabalhos</h2>
+
+<div class="carousel">
+
+<div class="carousel-track">
+
+<img src="imagens/galeria1.jpg" draggable="false">
+<img src="imagens/galeria2.jpg" draggable="false">
+<img src="imagens/galeria3.jpg" draggable="false">
+<img src="imagens/galeria4.jpg" draggable="false">
+<img src="imagens/galeria5.jpg" draggable="false">
+<img src="imagens/galeria6.jpg" draggable="false">
+<img src="imagens/galeria7.jpg" draggable="false">
+<img src="imagens/galeria8.jpg" draggable="false">
+<img src="imagens/galeria9.jpg" draggable="false">
+<img src="imagens/galeria10.jpg" draggable="false">
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="contato">
+
+<h2>Contato</h2>
+
+<p>📱 WhatsApp: (81) 98396-0860</p>
+
+<p>📷 Instagram: @DK_autobrilho_081</p>
+
+<a class="botao-principal" href="https://wa.me/5581983960860" target="_blank">
+Entrar em contato
+</a>
+
+</section>
+
+
+
+<footer>
+
+<p>© 2026 DK Autobrilho — Todos os direitos reservados</p>
+
+</footer>
+
+
+
+<a class="whatsapp-float" href="https://wa.me/5581983960860" target="_blank">
+💬
+</a>
+
+
+<script>
+
+const slider = document.querySelector('.carousel')
+const track = document.querySelector('.carousel-track')
+
+let isDown = false
+let startX
+let scrollLeft
+let timeout
+
+function pausarAnimacao(){
+
+track.style.animationPlayState = "paused"
+
+clearTimeout(timeout)
+
+timeout = setTimeout(()=>{
+track.style.animationPlayState = "running"
+},5000)
+
+}
+
+slider.addEventListener('mousedown',(e)=>{
+
+isDown = true
+startX = e.pageX - slider.offsetLeft
+scrollLeft = slider.scrollLeft
+
+pausarAnimacao()
+
+})
+
+slider.addEventListener('mouseup',()=>{
+isDown = false
+})
+
+slider.addEventListener('mouseleave',()=>{
+isDown = false
+})
+
+slider.addEventListener('mousemove',(e)=>{
+
+if(!isDown) return
+
+e.preventDefault()
+
+const x = e.pageX - slider.offsetLeft
+const walk = (x - startX) * 2
+
+slider.scrollLeft = scrollLeft - walk
+
+})
+
+/* TOUCH (CELULAR) */
+
+slider.addEventListener('touchstart',(e)=>{
+
+startX = e.touches[0].pageX - slider.offsetLeft
+scrollLeft = slider.scrollLeft
+
+pausarAnimacao()
+
+})
+
+slider.addEventListener('touchmove',(e)=>{
+
+const x = e.touches[0].pageX - slider.offsetLeft
+const walk = (x - startX) * 2
+
+slider.scrollLeft = scrollLeft - walk
+
+})
+
+/* impedir arrastar imagens */
+
+document.querySelectorAll('.carousel-track img').forEach(img=>{
+img.addEventListener('dragstart',(e)=>e.preventDefault())
+})
+
+</script>
+
+
+</body>
+</html>
